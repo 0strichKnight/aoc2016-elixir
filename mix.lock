@@ -1,0 +1,4 @@
+%{
+  "nimble_csv": {:hex, :nimble_csv, "1.2.0", "4e26385d260c61eba9d4412c71cea34421f296d5353f914afe3f2e71cce97722", [:mix], [], "hexpm", "d0628117fcc2148178b034044c55359b26966c6eaa8e2ce15777be3bbc91b12a"},
+  "parameterized_test": {:hex, :parameterized_test, "0.6.0", "5dc5e3f1c848feb936a591797cef48c048cd2a60657e5bb0e7b89d5ff5e8afe1", [:mix], [{:nimble_csv, "~> 1.1", [hex: :nimble_csv, repo: "hexpm", optional: false]}, {:wallaby, ">= 0.0.0", [hex: :wallaby, repo: "hexpm", optional: true]}], "hexpm", "95caaa2fa25b8e8fe4bcf972107ab3afb1bf734c0d203e9f0b932dc0b8bf2aa3"},
+}
