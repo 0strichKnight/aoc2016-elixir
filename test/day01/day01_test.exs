@@ -13,5 +13,13 @@ defmodule Aoc2016elixirTest.Day01 do
              """,
              %{steps: steps, distance: distance} do
     assert Aoc2016elixir.Day01.dopart01(steps) == distance
+  param_test "do part 01 with sample input",
+             """
+             | steps                    | distance |
+             |--------------------------|----------|
+             | ["R8", "R4", "R4", "R8"] | 4        |
+             """,
+             %{steps: steps, distance: distance} do
+    assert Day01.Part02.doit(steps) == distance
   end
 end

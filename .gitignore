@@ -21,3 +21,6 @@ aoc2016elixir-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Advent of code input files
+/priv/input
