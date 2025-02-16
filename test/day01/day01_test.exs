@@ -16,7 +16,7 @@ defmodule Aoc2016elixirTest.Day01 do
     assert Day01.Part01.doit(steps) == distance
   end
 
-  param_test "do part 01 with sample input",
+  param_test "do part 02 with sample input",
              """
              | steps                    | distance |
              |--------------------------|----------|
