@@ -14,9 +14,19 @@ defmodule Aoc2016elixir do
     def parse_input_from_file(input_file) do
       Path.join(:code.priv_dir(:aoc2016elixir), input_file)
       |> File.stream!()
-      |> Enum.map(&String.split(&1, ","))
-      |> Enum.at(0)
-      |> Enum.map(&String.trim/1)
+      |> Enum.map(&String.split(&1, ",", trim: true))
+    end
+
+    @doc """
+    Parses input from file as a list of lists.
+
+    Opens `input_file` from `priv` folder, reads each line, splits it by character,
+    and returns a list of list of characters.
+    """
+    def parse_input_as_lines(input_file) do
+      Path.join(:code.priv_dir(:aoc2016elixir), input_file)
+      |> File.stream!()
+      |> Enum.map(&String.split(&1, "", trim: true))
     end
   end
 end
