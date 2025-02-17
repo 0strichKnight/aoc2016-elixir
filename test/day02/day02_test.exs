@@ -6,6 +6,7 @@ defmodule Aoc2016elixirTest.Day02 do
 
   test "do part 01 with sample input" do
     lines = Input.parse_input_as_lines("test/0202.txt")
-    assert Day02.doit(lines) == [1, 9, 8, 5]
+    assert Day02.do_part1(lines) == [1, 9, 8, 5]
+  end
   end
 end
