@@ -20,6 +20,22 @@ defmodule Aoc2016elixir.Day02 do
     {3, 3} => 9
   }
 
+  @key_pad_2 %{
+    {1, 3} => 1,
+    {2, 2} => 2,
+    {2, 3} => 3,
+    {2, 4} => 4,
+    {3, 1} => 5,
+    {3, 2} => 6,
+    {3, 3} => 7,
+    {3, 4} => 8,
+    {3, 5} => 9,
+    {4, 2} => "A",
+    {4, 3} => "B",
+    {4, 4} => "C",
+    {5, 3} => "D"
+  }
+
   def do_part1() do
     lines = Input.parse_input_as_lines(@input_file)
     find_number_from_directions({2, 2}, lines, [], @key_pad_1)
@@ -29,12 +45,13 @@ defmodule Aoc2016elixir.Day02 do
     find_number_from_directions({2, 2}, lines, [], @key_pad_1)
   end
 
+  def do_part2() do
     lines = Input.parse_input_as_lines(@input_file)
-    find_number_from_directions({2, 2}, lines, [])
+    find_number_from_directions({3, 1}, lines, [], @key_pad_2)
   end
 
-  def doit(lines) do
-    find_number_from_directions({2, 2}, lines, [])
+  def do_part2(lines) do
+    find_number_from_directions({3, 1}, lines, [], @key_pad_2)
   end
 
   defp find_number_from_directions({r, c}, [head | tail], pressed, key_pad) do
