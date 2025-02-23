@@ -15,6 +15,41 @@ defmodule Aoc2016elixir.Day03 do
     |> Enum.count(fn is_valid -> is_valid end)
   end
 
+  def do_part02() do
+    read_input()
+    |> List.flatten()
+    |> Enum.into(Arrays.new())
+    |> do_part02()
+  end
+
+  def do_part02(input_array) do
+    check_triangle(0, input_array, 0)
+  end
+
+  defp check_triangle(index, input_array, total) do
+    cond do
+      input_array[index] == "X" -> check_triangle(index + 1, input_array, total)
+      index + 6 >= Arrays.size(input_array) -> total
+      true -> check_valid_triangle(index, input_array, total)
+    end
+  end
+
+  defp check_valid_triangle(index, input_array, total) do
+    triangle = [input_array[index], input_array[index + 3], input_array[index + 6]]
+
+    updated_input =
+      input_array
+      |> Arrays.replace(index, "X")
+      |> Arrays.replace(index + 3, "X")
+      |> Arrays.replace(index + 6, "X")
+
+    if is_valid_triangle(triangle) do
+      check_triangle(index + 1, updated_input, total + 1)
+    else
+      check_triangle(index + 1, updated_input, total)
+    end
+  end
+
   defp is_valid_triangle(sides) do
     [a, b, c] =
       sides
