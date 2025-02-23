@@ -23,8 +23,8 @@ defmodule Aoc2016elixir.Day02 do
                  ])
 
   def do_part1() do
-    lines = Input.parse_input_as_lines(@input_file)
-    find_number_from_directions({1, 1}, lines, [], @key_pad_1_arr)
+    Input.parse_input_as_lines(@input_file)
+    |> do_part1()
   end
 
   def do_part1(lines) do
@@ -32,8 +32,8 @@ defmodule Aoc2016elixir.Day02 do
   end
 
   def do_part2() do
-    lines = Input.parse_input_as_lines(@input_file)
-    find_number_from_directions({2, 0}, lines, [], @key_pad_2_arr)
+    Input.parse_input_as_lines(@input_file)
+    |> do_part2()
   end
 
   def do_part2(lines) do
