@@ -32,7 +32,7 @@ defmodule Aoc2016elixir.Day01.Part02 do
 
   defp visit(from_x, from_y, to_x, to_y, visited) when from_y == to_y do
     steps =
-      Range.new(from_x, to_x)
+      Range.new(from_x, to_x, 1)
       |> Enum.slice(1, 1000)
       |> Enum.map(&{&1, from_y})
 
@@ -41,7 +41,7 @@ defmodule Aoc2016elixir.Day01.Part02 do
 
   defp visit(from_x, from_y, to_x, to_y, visited) when from_x == to_x do
     steps =
-      Range.new(from_y, to_y)
+      Range.new(from_y, to_y, 1)
       |> Enum.slice(1, 1000)
       |> Enum.map(&{from_x, &1})
 
