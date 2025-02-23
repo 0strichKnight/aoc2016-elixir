@@ -21,7 +21,8 @@ defmodule Aoc2016elixir.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:parameterized_test, "~> 0.6", only: [:test]}
+      {:parameterized_test, "~> 0.6", only: [:test]},
+      {:arrays, ">= 2.1.1"}
     ]
   end
 end

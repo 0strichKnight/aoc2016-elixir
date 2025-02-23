@@ -8,55 +8,41 @@ defmodule Aoc2016elixir.Day02 do
 
   @input_file "input/day02.txt"
 
-  @key_pad_1 %{
-    {1, 1} => 1,
-    {1, 2} => 2,
-    {1, 3} => 3,
-    {2, 1} => 4,
-    {2, 2} => 5,
-    {2, 3} => 6,
-    {3, 1} => 7,
-    {3, 2} => 8,
-    {3, 3} => 9
-  }
+  @key_pad_1_arr Arrays.new([
+                   Arrays.new([1, 2, 3]),
+                   Arrays.new([4, 5, 6]),
+                   Arrays.new([7, 8, 9])
+                 ])
 
-  @key_pad_2 %{
-    {1, 3} => 1,
-    {2, 2} => 2,
-    {2, 3} => 3,
-    {2, 4} => 4,
-    {3, 1} => 5,
-    {3, 2} => 6,
-    {3, 3} => 7,
-    {3, 4} => 8,
-    {3, 5} => 9,
-    {4, 2} => "A",
-    {4, 3} => "B",
-    {4, 4} => "C",
-    {5, 3} => "D"
-  }
+  @key_pad_2_arr Arrays.new([
+                   Arrays.new([0, 0, 1, 0, 0]),
+                   Arrays.new([0, 2, 3, 4, 0]),
+                   Arrays.new([5, 6, 7, 8, 9]),
+                   Arrays.new([0, "A", "B", "C", 0]),
+                   Arrays.new([0, 0, "D", 0, 0])
+                 ])
 
   def do_part1() do
     lines = Input.parse_input_as_lines(@input_file)
-    find_number_from_directions({2, 2}, lines, [], @key_pad_1)
+    find_number_from_directions({1, 1}, lines, [], @key_pad_1_arr)
   end
 
   def do_part1(lines) do
-    find_number_from_directions({2, 2}, lines, [], @key_pad_1)
+    find_number_from_directions({1, 1}, lines, [], @key_pad_1_arr)
   end
 
   def do_part2() do
     lines = Input.parse_input_as_lines(@input_file)
-    find_number_from_directions({3, 1}, lines, [], @key_pad_2)
+    find_number_from_directions({2, 0}, lines, [], @key_pad_2_arr)
   end
 
   def do_part2(lines) do
-    find_number_from_directions({3, 1}, lines, [], @key_pad_2)
+    find_number_from_directions({2, 0}, lines, [], @key_pad_2_arr)
   end
 
   defp find_number_from_directions({r, c}, [head | tail], pressed, key_pad) do
     {next_r, next_c} = find_next_number({r, c}, head, key_pad)
-    next_button = key_pad[{next_r, next_c}]
+    next_button = key_pad[next_r][next_c]
     find_number_from_directions({next_r, next_c}, tail, pressed ++ [next_button], key_pad)
   end
 
@@ -75,10 +61,14 @@ defmodule Aoc2016elixir.Day02 do
   defp move_button({r, c}, "D", key_pad), do: move({r, c}, {r + 1, c}, key_pad)
   defp move_button({r, c}, _invalid, _key_pad), do: {r, c}
 
+  defp move({from_r, from_c}, {-1, _to_c}, _key_pad), do: {from_r, from_c}
+  defp move({from_r, from_c}, {_to_r, -1}, _key_pad), do: {from_r, from_c}
+
   defp move({from_r, from_c}, {to_r, to_c}, key_pad) do
-    case Map.has_key?(key_pad, {to_r, to_c}) do
-      true -> {to_r, to_c}
-      _ -> {from_r, from_c}
+    case key_pad[to_r][to_c] do
+      nil -> {from_r, from_c}
+      0 -> {from_r, from_c}
+      _ -> {to_r, to_c}
     end
   end
 end
